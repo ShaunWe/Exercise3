@@ -11,18 +11,21 @@ namespace Exercise3
         string _name;
         double _grade;
 
+        //Property method for name
         public string Name
         {
             get { return _name; }
             set { _name = value; }
         }
 
+        //Property method for name
         public double Grade
         {
             get { return _grade; }
             set { _grade = value; }
         }
 
+        //Method returns letter grade based on grade value
         public char GetLetterGrade()
         {
             char returnChar = 'F';
@@ -46,6 +49,7 @@ namespace Exercise3
             return returnChar;
         }
 
+        //Method returns GPA value based on letter grade
         public double GetGPAValue()
         {
             double returnDouble = 0.0;
@@ -73,6 +77,7 @@ namespace Exercise3
             return returnDouble;
         }
 
+        //Constructor with name and grade
         public Class(string name, double grade)
         {
             _name = name;

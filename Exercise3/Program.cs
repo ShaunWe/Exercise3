@@ -15,7 +15,6 @@ namespace Exercise3
              * Shaun Wehe
              * Exercise 3
              * February 12, 2019
-             * 
              */
 
             string inputLine;
@@ -90,6 +89,7 @@ namespace Exercise3
             //This loop runs until a valid selection is made
             while (loopRunning)
             {
+                //Displays list of students
                 Console.Clear();
                 Console.WriteLine("====================");
                 Console.WriteLine("===   Students   ===");
@@ -106,10 +106,12 @@ namespace Exercise3
                 Console.Write("Which student would you like to review the classes of:");
                 string input = Console.ReadLine().ToLower();
 
+                //Checks for input to go back
                 if (input == $"{students.Count+1}" || input == "back")
                 {
                     return;
                 }
+                //Checks input against Student names and numbers
                 for (int i = 0; i < students.Count; i++)
                 {
                     if (input == $"{i + 1}" || input == students[i].FullName().ToLower() || input == students[i].FirstName.ToLower())
@@ -120,6 +122,7 @@ namespace Exercise3
                     }
                 }
 
+                //If the check did not find anything, tell user invalid input was received
                 if (loopRunning)
                 {
                     Console.WriteLine("That is not a recognized entry. Please enter the students number or full name or first name.");
@@ -127,6 +130,7 @@ namespace Exercise3
                 }
             }
 
+            //Display student information to user
             Console.Clear();
             Console.WriteLine($"Student Name: {students[selection].FullName()}\n" +
                 $"Overall GPA: {students[selection].GetStudentGPA().ToString("n")}\n" +
@@ -145,7 +149,7 @@ namespace Exercise3
             double[] courseGPA = new double[courseNames.Length];
             int num = 0;
             double GPAvalue = 0;
-            //This loop gathers the GPA value from each student and then averages it, storing it in the courseGPA array
+            //This loop gathers the GPA value from each student by each course and then averages it, storing it in the courseGPA array
             for (int i = 0; i < courseNames.Length; i++)
             {
                 num = 0;
@@ -155,6 +159,7 @@ namespace Exercise3
                     num += 1;
                     GPAvalue += s.CourseList[i].GetGPAValue();
                 }
+                //Ensures there is no divide by 0 error, and performs calculation
                 if (num > 0)
                 {
                     GPAvalue = GPAvalue / num;
@@ -187,6 +192,7 @@ namespace Exercise3
             //Loop runs until valid selection is made
             while (loopRunning)
             {
+                //Displays list of students
                 Console.Clear();
                 Console.WriteLine("====================");
                 Console.WriteLine("===   Students   ===");
@@ -202,10 +208,12 @@ namespace Exercise3
                 Console.Write("Which student would you like to edit:");
                 string input = Console.ReadLine().ToLower();
 
+                //Checks for input to go back
                 if (input == $"{students.Count + 1}" || input == "back")
                 {
                     return;
                 }
+                //Checks input against Student names and numbers
                 for (int i = 0; i < students.Count; i++)
                 {
                     if (input == $"{i + 1}" || input == students[i].FullName().ToLower() || input == students[i].FirstName.ToLower())
@@ -216,6 +224,7 @@ namespace Exercise3
                     }
                 }
 
+                //If the check did not find anything, tell user invalid input was received
                 if (loopRunning)
                 {
                     Console.WriteLine("That is not a recognized entry. Please enter the students number or full name or first name.");
@@ -227,6 +236,7 @@ namespace Exercise3
             loopRunning = true;
             while (loopRunning)
             {
+                //Displays students courses and grades
                 iterator = 0;
                 Console.Clear();
                 Console.WriteLine($"Student Name: {students[selection].FullName()}\n" +
@@ -244,10 +254,12 @@ namespace Exercise3
                     $"Select a course to edit using the number or course name: ");
                 string input = Console.ReadLine().ToLower();
 
+                //Checks the input to go back
                 if (input == $"{students[selection].CourseList.Count + 1}" || input == "back")
                 {
                     return;
                 }
+                //Checks input against course names and numbers
                 for (int i = 0; i < students[selection].CourseList.Count; i++)
                 {
                     if (input == $"{i + 1}" || input == students[selection].CourseList[i].Name.ToLower())
@@ -258,6 +270,7 @@ namespace Exercise3
                     }
                 }
 
+                //If the check did not find anything, tell user invalid input was received
                 if (loopRunning)
                 {
                     Console.WriteLine("That is not a recognized entry. Please enter the students number or full name or first name.");
@@ -265,15 +278,18 @@ namespace Exercise3
                 }
             }
 
+            //Ask user for new grade value and set new grade value
             newGrade = Validation.GetDouble(0, 100, $"Enter the new grade for {students[selection].CourseList[courseSelection].Name} (0-100): ");
             students[selection].CourseList[courseSelection].Grade = newGrade;
 
+            //Inform user of success
             Console.WriteLine($"{students[selection].FullName()}'s grade for {students[selection].CourseList[courseSelection].Name} has been set to {students[selection].CourseList[courseSelection].Grade}");
             Utility.KeyToProceed();
         }
 
         public static double GetRandomDouble(double min, double max)
         {
+            //Creates a random double number and iterates it based on static rand variable
             Random random = new Random();
             rand += 1;
             double returnValue = 0;
